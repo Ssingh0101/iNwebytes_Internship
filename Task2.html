@@ -1,24 +1,24 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Colorful Random Joke Generator</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Colorful Joke Generator</title>
 </head>
 <body>
-  <div id="joke-container">
-    <label for="category">Select a joke category:</label>
-    <select id="category">
-      <option value="Miscellaneous">Miscellaneous</option>
-      <option value="Programming">Programming</option>
-      <option value="Pun">Pun</option>
-      <!-- Add more categories as needed -->
-    </select>
-    <br>
-    <p id="joke">Press the button to generate a joke!</p>
-    <button id="btn-generate">Generate Joke</button>
-  </div>
-
-  <script src="main.js"></script>
+    <div class="container">
+        <h1>Colorful Joke Generator</h1>
+        <label for="category">Select a Joke Category:</label>
+        <select id="category">
+            <option value="general">General</option>
+            <option value="programming">Programming</option>
+            <option value="pun">Pun</option>
+            <!-- Add more categories as needed -->
+        </select>
+        <button id="getJokeBtn">Get Joke</button>
+        <p id="jokeText"></p>
+    </div>
+    <script src="main.js"></script>
 </body>
 </html>
