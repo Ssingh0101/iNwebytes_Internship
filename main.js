@@ -1,25 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const jokeForm = document.getElementById("jokeForm");
-    const jokeDisplay = document.getElementById("jokeDisplay");
+    const getJokeBtn = document.getElementById("getJokeBtn");
+    const jokeText = document.getElementById("jokeText");
 
-    jokeForm.addEventListener("submit", async (event) => {
-        event.preventDefault();
-        
-        const selectedCategory = document.getElementById("category").value;
-        const apiUrl = `https://v2.jokeapi.dev/joke/${selectedCategory}`;
-
+    getJokeBtn.addEventListener("click", async () => {
         try {
-            const response = await fetch(apiUrl);
+            const response = await fetch("https://official-joke-api.appspot.com/jokes/random");
             const data = await response.json();
-
-            if (data.joke) {
-                jokeDisplay.innerHTML = `<p>${data.joke}</p>`;
-            } else {
-                jokeDisplay.innerHTML = "<p>No joke available for this category.</p>";
-            }
+            const joke = data.setup + " " + data.punchline;
+            const colorizedJoke = colorizeJoke(joke);
+            jokeText.innerHTML = colorizedJoke;
         } catch (error) {
-            jokeDisplay.innerHTML = "<p>An error occurred while fetching the joke.</p>";
-            console.error(error);
+            console.error("Error fetching joke:", error);
+            jokeText.innerHTML = "Failed to fetch a joke.";
         }
     });
-});s
+
+    function colorizeJoke(joke) {
+        const colors = ["red", "green", "yellow", "blue", "magenta", "cyan"];
+        const words = joke.split(" ");
+        let colorizedJoke = "";
+        words.forEach((word, index) => {
+            const color = colors[index % colors.length];
+            colorizedJoke += `<span style="color: ${color};">${word}</span> `;
+        });
+        return colorizedJoke;
+    }
+});
